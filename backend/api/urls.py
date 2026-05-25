@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     TenantViewSet, PlantLookupViewSet, AirportLookupViewSet, EmissionFactorViewSet,
     IngestionJobViewSet, NormalizedActivityViewSet, IngestionUploadView,
-    DashboardMetricsView, DBSeedingView
+    DashboardMetricsView, DBSeedingView, DBClearView
 )
 
 router = DefaultRouter()
@@ -19,4 +19,5 @@ urlpatterns = [
     path('upload-source/', IngestionUploadView.as_view(), name='upload-source'),
     path('metrics/', DashboardMetricsView.as_view(), name='metrics'),
     path('seed-db/', DBSeedingView.as_view(), name='seed-db'),
+    path('clear-db/', DBClearView.as_view(), name='clear-db'),
 ]

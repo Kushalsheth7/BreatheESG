@@ -98,6 +98,32 @@ export default function App() {
     }
   };
 
+  // Clear DB handler
+  const handleClearDatabase = async () => {
+    if (!window.confirm("WARNING: This will wipe out ALL activities, master registries, plant lookups, and audit trails in the production database. Are you absolutely sure you want to proceed?")) {
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/clear-db/`, { method: 'POST' });
+      if (res.ok) {
+        alert("Production database successfully wiped!");
+        setActivities([]);
+        setMetrics(null);
+        setJobs([]);
+      } else {
+        const errData = await res.json();
+        alert(`Error clearing database: ${errData.error || 'Server error'}`);
+      }
+    } catch (err) {
+      console.error("Error clearing database:", err);
+      alert("Failed to connect to the backend Django API.");
+    } finally {
+      setLoading(false);
+      fetchData();
+    }
+  };
+
   // Upload handler
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -264,6 +290,9 @@ export default function App() {
               onChange={e => setAnalystName(e.target.value)} 
             />
           </div>
+          <button className="btn btn-danger" onClick={handleClearDatabase}>
+            <Database size={16} /> Clear Database
+          </button>
           <button className="btn" style={{ padding: '8px' }} onClick={fetchData}>
             <RefreshCw size={16} />
           </button>

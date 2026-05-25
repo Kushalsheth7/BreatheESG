@@ -464,3 +464,16 @@ class DBSeedingView(generics.CreateAPIView):
             "tenant_id": tenant.id,
             "tenant_name": tenant.name
         }, status=status.HTTP_201_CREATED)
+
+
+class DBClearView(generics.CreateAPIView):
+    """
+    Clears all database tables non-interactively to bypass Render's shell paywall.
+    """
+    def post(self, request, *args, **kwargs):
+        try:
+            from django.core.management import call_command
+            call_command('flush', interactive=False)
+            return Response({"message": "Production database cleared successfully!"})
+        except Exception as e:
+            return Response({"error": str(e)}, status=500)

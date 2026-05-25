@@ -393,6 +393,16 @@ body {
   background: var(--primary-hover);
   box-shadow: 0 0 15px var(--primary-glow);
 }
+.btn-danger {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #f87171;
+}
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+}
 
 /* ========================================== */
 /* ACTIVITY TABLE CONTAINER & CUSTOM SCROLLBAR */
