@@ -1,0 +1,5 @@
+Account_Number,Meter_Number,Billing_Start_Date,Billing_End_Date,Usage_kWh,Tariff_Name,Demand_kW,Total_Charges_USD,Read_Status
+92837492-3,MTR-98234-A,2026-05-12,2026-06-11,15000.0,Commercial TOU-A,45.2,1875.40,Actual
+92837492-3,MTR-98234-A,2026-05-20,2026-06-20,12000.0,Commercial TOU-A,41.0,1450.00,Actual
+11928374-1,IN03,2026-05-01,2026-05-31,45000.0,Industrial High,120.5,5800.00,Actual
+11928374-1,IN03,2026-05-01,INVALID_DATE,25000.0,Industrial High,90.0,3200.00,Actual

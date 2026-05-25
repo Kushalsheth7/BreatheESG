@@ -1,0 +1,7 @@
+Booking_ID,Passenger_Name,Passenger_Email,Trip_Start_Date,Trip_End_Date,Category,Origin,Destination,Cabin_Class,Distance_km,Nights,Spend_Amount,Spend_Currency
+BKG-982341,Jane Doe,jane.doe@global.com,2026-05-12,2026-05-13,Flight,JFK,LHR,Economy,0,0,850.00,USD
+BKG-982342,John Smith,john.smith@global.com,2026-05-14,2026-05-15,Flight,SFO,JFK,Business,4150,0,1850.00,USD
+BKG-982343,Jane Doe,jane.doe@global.com,2026-05-13,2026-05-18,Hotel,,,Economy,0,0,1200.00,USD
+BKG-982344,John Smith,john.smith@global.com,2026-05-15,2026-05-15,Taxi,,,Economy,0,0,45.00,USD
+BKG-982345,Alice Johnson,alice.j@global.com,2027-05-20,2027-05-22,Flight,SFO,CDG,First,0,0,4200.00,USD
+BKG-982346,Jane Doe,jane.doe@global.com,2026-05-18,2026-05-18,Train,,,Economy,120,0,65.00,GBP
