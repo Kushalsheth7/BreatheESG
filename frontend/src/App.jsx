@@ -23,6 +23,7 @@ export default function App() {
   const [activities, setActivities] = useState([]);
   const [metrics, setMetrics] = useState(null);
   const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
   
   // Selection and UI states
   const [selectedActivity, setSelectedActivity] = useState(null);
@@ -44,6 +45,7 @@ export default function App() {
 
   // Fetch initial system states
   const fetchData = async () => {
+    setLoading(true);
     try {
       // Fetch Metrics
       const metricsRes = await fetch(`${BASE_URL}/metrics/?tenant=${tenantId}`);
@@ -72,6 +74,8 @@ export default function App() {
       }
     } catch (err) {
       console.error("Error communicating with backend API:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -319,8 +323,17 @@ export default function App() {
         </section>
       )}
 
+      {/* Database Loading State */}
+      {loading && (
+        <section className="glass-card" style={{ textAlign: 'center', padding: '60px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+          <RefreshCw size={36} style={{ color: 'var(--primary)', filter: 'drop-shadow(0 0 10px rgba(16,185,129,0.3))' }} />
+          <h2>Analyzing Carbon Database...</h2>
+          <p style={{ color: 'var(--text-muted)' }}>Retrieving normalized scopes, grid coefficients, and compliance logs.</p>
+        </section>
+      )}
+
       {/* Database Bootstrap State */}
-      {activities.length === 0 && (
+      {!loading && activities.length === 0 && (
         <section className="glass-card" style={{ textAlign: 'center', padding: '40px' }}>
           <Database size={48} color="var(--primary)" style={{ marginBottom: '16px', filter: 'drop-shadow(0 0 10px rgba(16,185,129,0.3))' }} />
           <h2 style={{ marginBottom: '10px' }}>ESG Database Uninitialized</h2>
@@ -334,7 +347,7 @@ export default function App() {
       )}
 
       {/* Analytics Visualization and Uploader Section */}
-      {activities.length > 0 && (
+      {!loading && activities.length > 0 && (
         <section className="analytics-section">
           {/* Uploader Box */}
           <div className="glass-card uploader-box">
@@ -529,7 +542,7 @@ export default function App() {
       )}
 
       {/* Grid Activity Workspace Table */}
-      {activities.length > 0 && (
+      {!loading && activities.length > 0 && (
         <section className="glass-card grid-section">
           <div className="grid-header-actions">
             <div>
