@@ -9,7 +9,9 @@ import {
   Tooltip, Legend, PieChart, Pie, Cell 
 } from 'recharts';
 
-const BASE_URL = 'http://localhost:8000/api';
+const BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:8000/api'
+  : 'https://breatheesg-tz6e.onrender.com/api';
 
 export default function App() {
   // Tenant states
