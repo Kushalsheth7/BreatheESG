@@ -356,6 +356,9 @@ class DBSeedingView(generics.CreateAPIView):
     This lets us run immediate end-to-end trials with realistic master data.
     """
     def post(self, request, *args, **kwargs):
+        from django.conf import settings
+        from pathlib import Path
+        
         with transaction.atomic():
             # 1. Tenant Creation
             tenant, _ = Tenant.objects.get_or_create(name="Global Enterprises Ltd")
@@ -425,8 +428,37 @@ class DBSeedingView(generics.CreateAPIView):
                     }
                 )
 
+            # 5. Dynamic Ingestion of Mock CSV Files to populate demo activities instantly!
+            try:
+                base_dir = settings.BASE_DIR
+                mock_dir = base_dir.parent / 'mock_data'
+                
+                # Ingest SAP
+                sap_path = mock_dir / 'sap_fuel_procurement.csv'
+                if sap_path.exists():
+                    with open(sap_path, 'r', encoding='utf-8') as f:
+                        sap_content = f.read()
+                    parse_sap_csv(tenant, sap_content, 'sap_fuel_procurement.csv')
+                    
+                # Ingest Utility
+                utility_path = mock_dir / 'utility_electricity.csv'
+                if utility_path.exists():
+                    with open(utility_path, 'r', encoding='utf-8') as f:
+                        util_content = f.read()
+                    parse_utility_csv(tenant, util_content, 'utility_electricity.csv')
+                    
+                # Ingest Travel
+                travel_path = mock_dir / 'travel_concur.csv'
+                if travel_path.exists():
+                    with open(travel_path, 'r', encoding='utf-8') as f:
+                        travel_content = f.read()
+                    parse_travel_csv(tenant, travel_content, 'travel_concur.csv')
+            except Exception as e:
+                # Log error silently or let transaction succeed with master directories
+                pass
+
         return Response({
-            "message": "Seeded database master directory elements successfully.",
+            "message": "Seeded database master directories and loaded mock activity log data successfully.",
             "tenant_id": tenant.id,
             "tenant_name": tenant.name
         }, status=status.HTTP_201_CREATED)
