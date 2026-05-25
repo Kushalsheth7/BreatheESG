@@ -777,6 +777,30 @@ export default function App() {
                     <span style={{ fontWeight: 600 }}>{selectedActivity.hotel_nights} room-nights</span>
                   </div>
                 )}
+                {selectedActivity.original_data && selectedActivity.original_data.Booking_ID && (
+                  <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between' }}>
+                    <span style={{ color: 'var(--text-muted)' }}>Booking ID:</span>
+                    <span style={{ fontWeight: 600, fontFamily: 'monospace' }}>{selectedActivity.original_data.Booking_ID}</span>
+                  </div>
+                )}
+                {selectedActivity.original_data && selectedActivity.original_data.Passenger_Name && (
+                  <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between' }}>
+                    <span style={{ color: 'var(--text-muted)' }}>Passenger:</span>
+                    <span style={{ fontWeight: 600 }}>{selectedActivity.original_data.Passenger_Name} ({selectedActivity.original_data.Passenger_Email})</span>
+                  </div>
+                )}
+                {selectedActivity.original_data && selectedActivity.original_data.MBLNR && (
+                  <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between' }}>
+                    <span style={{ color: 'var(--text-muted)' }}>SAP Material Doc (MBLNR):</span>
+                    <span style={{ fontWeight: 600, fontFamily: 'monospace' }}>{selectedActivity.original_data.MBLNR}</span>
+                  </div>
+                )}
+                {selectedActivity.original_data && selectedActivity.original_data.Account_Number && (
+                  <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between' }}>
+                    <span style={{ color: 'var(--text-muted)' }}>Utility Account:</span>
+                    <span style={{ fontWeight: 600, fontFamily: 'monospace' }}>{selectedActivity.original_data.Account_Number}</span>
+                  </div>
+                )}
                 <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between' }}>
                   <span style={{ color: 'var(--text-muted)' }}>Auditor Sign-off:</span>
                   <span style={{ fontWeight: 600, color: 'var(--primary)' }}>{selectedActivity.approved_by || 'Unsigned'}</span>
