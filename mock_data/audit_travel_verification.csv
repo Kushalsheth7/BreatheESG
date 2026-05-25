@@ -1,0 +1,4 @@
+Booking_ID,Passenger_Name,Passenger_Email,Trip_Start_Date,Trip_End_Date,Category,Origin,Destination,Cabin_Class,Distance_km,Nights,Spend_Amount,Spend_Currency
+BKG-AUDIT-01,Alex Carter,alex.carter@global.com,2026-05-10,2026-05-11,Flight,BOM,LHR,Business,0,0,2450.00,USD
+BKG-AUDIT-02,Sophia Lin,sophia.lin@global.com,2026-05-12,2026-05-16,Hotel,,,Economy,0,0,1100.00,EUR
+BKG-AUDIT-03,Alex Carter,alex.carter@global.com,2026-05-16,2026-05-18,Car,,,Economy,300,0,180.00,EUR
